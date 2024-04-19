@@ -29,10 +29,24 @@
 #ifndef _OPENBSD_COMPAT_H
 #define _OPENBSD_COMPAT_H
 
+#include "config.h"
+
 #include <stdlib.h>
+
+#ifndef HAVE_FREEZERO
+void freezero(void *, size_t);
+#endif
 
 #ifndef HAVE_GETDTABLECOUNT
 int getdtablecount(void);
+#endif
+
+#ifndef HAVE_PROCNAME
+const char *getprogname(void);
+#endif
+
+#ifndef HAVE_RECALLOCARRAY
+void *recallocarray(void *, size_t, size_t, size_t);
 #endif
 
 #ifndef HAVE_STRLCPY

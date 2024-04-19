@@ -16,6 +16,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include "openbsd-compat.h"
+
 #include <sys/socket.h>
 #include <sys/time.h>
 
