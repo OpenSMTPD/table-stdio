@@ -36,11 +36,11 @@ AC_SEARCH_LIBS([imsg_init], [util], [
 )
 
 AC_CHECK_HEADER([sys/queue.h], [], [
-	CFLAGS="$CFLAGS -I$srcdir/openbsd-compat"
+	CFLAGS="$CFLAGS -I$srcdir/openbsd-compat/tree"
 ])
 
 AC_CHECK_HEADER([sys/tree.h], [], [
-	CFLAGS="$CFLAGS -I$srcdir/openbsd-compat"
+	CFLAGS="$CFLAGS -I$srcdir/openbsd-compat/tree"
 ])
 
 AC_CONFIG_HEADERS([config.h])
