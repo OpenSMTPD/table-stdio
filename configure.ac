@@ -16,7 +16,7 @@ AS_IF([test "x$with_libbsd" = "xyes"], [
 	])
 ])
 
-AC_REPLACE_FUNCS([
+AC_REPLACE_FUNCS([ \
 	freezero \
 	getdtablecount \
 	getprogname \
