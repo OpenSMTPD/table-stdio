@@ -5,17 +5,6 @@ AM_INIT_AUTOMAKE([-Wall foreign subdir-objects])
 AC_PROG_CC
 AC_USE_SYSTEM_EXTENSIONS
 
-AC_ARG_WITH([libbsd],
-	AS_HELP_STRING([--with-libbsd],
-		[Build with libbsd library (default: disabled)]))
-
-AS_IF([test "x$with_libbsd" = "xyes"], [
-	PKG_CHECK_MODULES([libbsd], [libbsd-overlay libbsd-ctor], [
-		CFLAGS="$libbsd_CFLAGS $CFLAGS"
-		LIBS="$libbsd_LIBS $LIBS"
-	])
-])
-
 AC_REPLACE_FUNCS([ \
 	freezero \
 	getdtablecount \
