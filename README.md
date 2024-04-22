@@ -16,7 +16,7 @@ It works by "wrapping" the new tables and speaking with smtpd the
 legacy protocol.  Here's an example usage with
 [table-passwd][table-passwd]:
 
-	table virtuals proc:"stdio /usr/local/libexec/smtpd/table-passwd /etc/mail/users"
+	table virtuals "stdio:/usr/local/libexec/smtpd/table-passwd /etc/mail/users"
 
 [table-passwd]: https://github.com/OpenSMTPD/table-passwd
 

@@ -236,8 +236,9 @@ table_procexec_fetch(int service, struct dict *params, char *dst, size_t sz)
 }
 
 static int
-spawn_backend(int argc, char **argv)
+spawn_backend(char *backend)
 {
+	const char *argv[] = {"sh", "-c", NULL, NULL};
 	int p[2];
 
 	if (socketpair(AF_UNIX, SOCK_STREAM, PF_UNSPEC, p) == -1)
@@ -252,8 +253,11 @@ spawn_backend(int argc, char **argv)
 		dup2(p[1], 1);
 		/* stderr is inherited */
 
-		execvp(argv[0], argv);
-		log_warn("execvp %s", argv[0]);
+		log_warnx("about to run %s", backend);
+
+		argv[2] = backend;
+		execvp("/bin/sh", (char *const *)argv);
+		log_warn("sh -c %s", backend);
 		_exit(1);
 	}
 
@@ -264,7 +268,7 @@ spawn_backend(int argc, char **argv)
 static void __dead
 usage(void)
 {
-	fprintf(stderr, "usage: %s table-backend [args...]\n", getprogname());
+	fprintf(stderr, "usage: %s table-backend\n", getprogname());
 	exit(1);
 }
 
@@ -294,10 +298,10 @@ main(int argc, char **argv)
 	argc -= optind;
 	argv += optind;
 
-	if (argc == 0)
+	if (argc != 1)
 		usage();
 
-	if ((fd = spawn_backend(argc, argv)) == -1)
+	if ((fd = spawn_backend(argv[0])) == -1)
 		fatal("spawn_backend");
 	if ((backend = fdopen(fd, "r+")) == NULL) {
 		log_warn("fdopen");
