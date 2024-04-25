@@ -210,7 +210,7 @@ table_procexec_lookup(int service, struct dict *params, const char *key,
 static int
 table_procexec_fetch(int service, struct dict *params, char *dst, size_t sz)
 {
-	const char	*r, *k;
+	const char	*r;
 
 	if (!(services & service))
 		return (-1);
@@ -229,7 +229,7 @@ table_procexec_fetch(int service, struct dict *params, char *dst, size_t sz)
 		fatalx("malformed line: %s", line);
 	r += 6;
 
-	if (strlcpy(dst, k, sz) >= sz)
+	if (strlcpy(dst, r, sz) >= sz)
 		return (-1);
 
 	return (1);
