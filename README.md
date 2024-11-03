@@ -1,5 +1,8 @@
 # table-stdio
 
+> This repository is archived.  Since OpenSMTPD 7.6 the stdio protocol
+> is the default one and this experiment is no longer needed.
+
 The *stdio* table is conceptually similar to `table-socketmap` in
 OpenSMTPD-extras: it allows to write programs that implements the
 tables api speaking a simple text-based protocol.
